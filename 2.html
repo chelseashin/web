@@ -6,6 +6,10 @@
   <!-- CSS Link tag - 재사용성을 높여줌 -->
   <!-- 캐싱. 저장하는 것. 중복제거 면에서 효과가 높다. -->
   <link rel="stylesheet" href="style.css">
+  <!-- js 파일로 쪼개기 -->
+  <script src="colors.js"></script>
+  <!-- jQuery CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
   <!-- Google Analytics - 웹사이트 방문자 분석기 -->
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -20,6 +24,9 @@
 </head>
 <body>
   <h1><a href="index.html">WEB</a></h1>
+  <input id="night_day" type="button" value="night" onclick="
+    nightDayHandler(this);
+  ">
   <div id="grid" >
     <ol>
       <!-- tag < class < id 순으로 우선순위 높음 -->
