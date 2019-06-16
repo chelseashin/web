@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="style.css">
   <!-- js 파일로 쪼개기 -->
   <script src="colors.js"></script>
+    <!-- fetch를 잘 사용할 수 있도록! 우리가 원하는 대로 동작할 수 있도록! -->
+    <!-- fetch API가 없는 (오래된) 브라우저일 때 사용 -->
+  <script src="fetch/fetch.js"></script>
   <!-- jQuery CDN -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -28,12 +31,14 @@
   ">
   <div id="grid">
     <ol id="nav">
+      <!-- 방법 4 - list 파일로 쪼개기 -->
+      <!-- list 파일로 외부로 빼서 추가/수정할 수 있음 -->
+      <!-- data가 들어있는 list파일을 수정함으로써 app입장에서 사용자들이 마음대로 변경하는 사고를 방지하고 contents를 입력하는 입장에서 어떻게 해야하는 것으로부터 자유로울 수 있음. -->
+
       <!-- 방법 3 - 리팩토링(함수화) -->
       <!-- # : 북마크기능 / ! : hash bang -->
       <!-- hash bang을 이용해서 어떤 사이트에 처음 들어왔을 때 초기 페이지를 로드하는 방법 -->
-      <li><a href="#!html" onclick="fetchPage('html')">html</a></li>
-      <li><a href="#!css" onclick="fetchPage('css')">css</a></li>
-      <li><a href="#!javascript" onclick="fetchPage('javascript')">javascript</a></li>
+      
       <!-- 방법 2 - fetch API 적용 -->
         <!-- <li><a onclick="
           fetch('html').then(function(response){
@@ -56,7 +61,8 @@
             })
           });
         ">JavaScript</a></li> -->
-      <!-- 방법 1 - 기본 -->
+      
+        <!-- 방법 1 - 기본 -->
       <!-- <li><a href="1.html">HTML</a></li>
       <li><a href="2.html">CSS</a></li>
       <li><a href="3.html">JavaScript</a></li> -->
@@ -68,21 +74,43 @@
     function fetchPage(name){
       fetch(name).then(function(response){
         response.text().then(function(text){
-          document.querySelector('article').innerHTML=text;
+          document.querySelector('article').innerHTML = text;
         })
-      })
+      });
     }
     if(location.hash){
       fetchPage(location.hash.substr(2));
     } else {
       fetchPage('welcome');
     }
+    // 방법 4 - list 파일 불러오기 
+    fetch('list').then(function(response){
+      response.text().then(function(text){
+        // ','를 기준으로 나누어 배열을 만들어서 하나씩 꺼내 사용해보자
+        var items = text.split(',');
+        var i = 0;
+        var tags = '';
+        while(i<items.length){
+          var item = items[i];
+          item = item.trim();
+          var tag = '<li><a href="#!'+item+'" onclick="fetchPage(\''+item+'\')">'+item+'</a></li>';
+          tags = tags + tag;
+          i = i + 1;
+        }
+        // id값이 'nav'인 태그 선택
+        document.querySelector('#nav').innerHTML = tags;
+      })
+    });
     </script>
     <div id="article">
-      <h2>WEB</h2>
-      <img src="web.jpg" width="500px" alt="coding">
-      <p>The World Wide Web (abbreviated WWW or the Web) is an information space where documents and other web resources are identified by Uniform Resource Locators (URLs), interlinked by hypertext links, and can be accessed via the Internet.[1] English scientist Tim Berners-Lee invented the World Wide Web in 1989. He wrote the first web browser computer program in 1990 while employed at CERN in Switzerland.[2][3] The Web browser was released outside of CERN in 1991, first to other research institutions starting in January 1991 and to the general public on the Internet in August 1991.
-      </p>
+      
+    </div>
+    <div>
+        <h2>WEB</h2>
+        <img src="web.jpg" width="500px" alt="coding">
+        <p>
+          The World Wide Web (abbreviated WWW or the Web) is an information space where documents and other web resources are identified by Uniform Resource Locators (URLs), interlinked by hypertext links, and can be accessed via the Internet.[1] English scientist Tim Berners-Lee invented the World Wide Web in 1989. He wrote the first web browser computer program in 1990 while employed at CERN in Switzerland.[2][3] The Web browser was released outside of CERN in 1991, first to other research institutions starting in January 1991 and to the general public on the Internet in August 1991.
+        </p>
     </div>
   </div>
 </body>
