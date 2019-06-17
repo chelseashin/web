@@ -100,7 +100,7 @@
 ```
 
 * 위 html파일은 data면서 logic(application)이 공존함
-* 사용자 입장에서 list라는 파일에만 집중하면 됨.
+* 사용자 입장에서 list라는 파일에만 집중하면 됨
 * 글 목록이 ajax를 사용하게 됨
 * 사소한 장식들이 구현하기가 훨씬 어려움을 느낌....
 * data를 compact하게, data를 중심으로 만드는 방법.
@@ -122,7 +122,7 @@ html,css,javascript,ajax
 * 2018년 현재 fetch API는 비교적 최신 기능 
 * 따라서 아직 지원되지 않는 브라우저를 사용자가 사용하는 경우 동작하지 않을 수 있음
 * 오래된 브라우저에서 fetch 기능을 사용할 때 사용 
-* polypill을 이용하면 fetch API를 지원하지 않는 웹브라우저에서도 이용할 수 있음. 
+* polypill을 이용하면 fetch API를 지원하지 않는 웹브라우저에서도 이용할 수 있음
 * 지원되지 않는 브라우저에서 코드가 실행되면 polyfill 이 활성화되서 대신 동작
 *  fetch API의 ployfill을 적용해보자
 
@@ -135,6 +135,18 @@ html,css,javascript,ajax
 * 어떤 특정 기능이 어떤 브라우저에서 현재 지원되는가 볼 수 있는 사이트.
 
 ![image](https://user-images.githubusercontent.com/45935233/59564719-20643900-9085-11e9-8d42-c0ba65374cb1.png)
+
+
+
+* index.html - fetch 사용하기
+
+```html
+<head>
+  <!-- fetch를 잘 사용할 수 있도록! 우리가 원하는 대로 동작할 수 있도록! -->
+  <!-- fetch API가 없는 (오래된) 브라우저일 때 사용 -->
+  <script src="fetch/fetch.js"></script>
+</head>
+```
 
 
 
