@@ -23,6 +23,7 @@
 * #### jQuery
 
   * JavaScript Community에서 가장 중요한 Library 중 하나
+  * 자바스크립트의 생산상을 극적으로 향상시켜주는 기술
   * 가장 안정적이고 생산성이 높은 JavaScript의 라이브러리
 
 
